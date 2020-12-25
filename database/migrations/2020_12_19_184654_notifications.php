@@ -16,7 +16,7 @@ class Notifications extends Migration
       Schema::create('notifications', function (Blueprint $table){
       $table->increments('id');
       $table->string('name')->unique();
-      $table->string('last_notification')->strtotime();//json formatında veriler görünecek onu ayarla kaç gün sonra kaybolacak kalan süre görünecek
+      $table->string('last_notification');//json formatında veriler görünecek onu ayarla kaç gün sonra kaybolacak kalan süre görünecek
       $table->integer('created_at')->unsigned();
       $table->integer('updated_at')->unsigned();
     });

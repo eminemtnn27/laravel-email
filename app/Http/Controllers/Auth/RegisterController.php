@@ -65,20 +65,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $user = User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        $to_name='Antep Bootcamp';
+        $to_name = 'Antep Bootcamp';
         $to_email = $data['email'];
+        $user_name=$data['name'];
         $body = [];
-        $mail_data = array(['body'=>$body]);
-        Mail::send('email.register-email',$mail_data,function($msg) use ($to_name,$to_email){
-            $msg->to($to_email,$to_name)->subject('Welcome');
-            $msg->from(env('MAIL_USERNAME'),'Admin');
+        $mail_data = array(['body'=>$body], 'username'=>$user_name,'email'=>$to_email);
+        Mail::send('email.register-email', $mail_data, function ($message) use($to_name, $to_email){
+            $message->to($to_email, $to_name)->subject('Hoşgeldin!');
+            $message->from(env('MAIL_USERNAME'), 'hanikap.com');
         });
+
         return $user;
     }
+ 
 }

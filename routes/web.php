@@ -14,9 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin-master');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/bildirim', [App\Http\Controllers\HomeController::class, 'notification'])->name('bildirim');
+
+Route::get('/email', [App\Http\Controllers\HomeController::class, 'email'])->name('email');
+Route::get('/add-product', [App\Http\Controllers\ProductController::class, 'show'])->name('show-product');
+Route::post('/save-product', [App\Http\Controllers\ProductController::class, 'save'])->name('save-product');
+
+
+
